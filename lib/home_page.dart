@@ -84,9 +84,9 @@ class _HomePageState extends State<HomePage> {
 
   void _tipCalculation() {
     if (currentRadio == null) {
-      emptyRadio();
+      _emptyRadio();
     } else if (serviceController.text.isEmpty) {
-      emptyTextField();
+      _emptyTextField();
     } else {
       tip = double.parse(serviceController.text) * percentages[currentRadio!];
       if (roundUp) tip = tip.ceilToDouble();
@@ -94,25 +94,25 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  radioGroupGenerator() {
-    return radioGroup.entries
-        .map(
-          (radioElement) => ListTile(
-            leading: Radio(
-              value: radioElement.key,
-              groupValue: currentRadio,
-              onChanged: (int? selected) {
-                currentRadio = selected;
-                setState(() {});
-              },
+    radioGroupGenerator() {
+      return radioGroup.entries
+          .map(
+            (radioElement) => ListTile(
+              leading: Radio(
+                value: radioElement.key,
+                groupValue: currentRadio,
+                onChanged: (int? selected) {
+                  currentRadio = selected;
+                  setState(() {});
+                },
+              ),
+              title: Text("${radioElement.value}"),
             ),
-            title: Text("${radioElement.value}"),
-          ),
-        )
-        .toList();
-  }
+          )
+          .toList();
+    }
 
-  void emptyTextField() {
+  void _emptyTextField() {
     showDialog(
       context: context,
       builder: ((context) {
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void emptyRadio() {
+  void _emptyRadio() {
     showDialog(
       context: context,
       builder: ((context) {
