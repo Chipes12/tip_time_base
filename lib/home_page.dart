@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(15),
             child: MaterialButton(
-              child: Text("CALCULATE"),
+              child: Text("CALCULATE", style: TextStyle(color: Colors.white),),
               onPressed: () {
                 _tipCalculation();
               },
